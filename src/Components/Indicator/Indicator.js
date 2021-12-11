@@ -4,7 +4,7 @@ import {
     Routes,
     Route,
 } from "react-router-dom"
-import Auth from '../Auth/Auth'
+import Login from '../Auth/Login/Login'
 import Home from '../Home/Home'
 
 const Indicator = () => {
@@ -12,7 +12,7 @@ const Indicator = () => {
         <Router>
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/login-or-register" element={<Auth />} />
+                <Route path="/login" element={<Login />} />
             </Routes>
         </Router>
     )

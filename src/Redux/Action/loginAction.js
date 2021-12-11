@@ -1,5 +1,5 @@
 import axios from "axios"
-import { HIDE_ERROR, LOGIN_FAILED, LOGIN_REQUEST, LOGIN_SUCCESS } from "../Const/const"
+import { HIDE_ERROR, HIDE_SUCCESS_MESSAGE, LOGIN_FAILED, LOGIN_REQUEST, LOGIN_SUCCESS } from "../Const/const"
 const api = 'https://dpi-backend.herokuapp.com'
 
 export const userLogin = (formdata) => async (dispatch) => {
@@ -11,6 +11,12 @@ export const userLogin = (formdata) => async (dispatch) => {
             type: LOGIN_SUCCESS,
             payload: logReq,
         })
+        setTimeout(() => {
+            dispatch({
+                type: HIDE_SUCCESS_MESSAGE,
+                payload: logReq,
+            })
+        }, 4000);
     } catch (error) {
         console.clear();
         dispatch({

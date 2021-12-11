@@ -13,7 +13,7 @@ const Login = () => {
 
     //  ==> Login data from server <==
     const userLoginstatus = useSelector(state => state.userLoginstatus)
-    const { loading, loggedIn, error } = userLoginstatus
+    const { loading, loggedIn, error, success } = userLoginstatus
 
     //  ==> if login success <==
     if (loggedIn) {
@@ -61,9 +61,9 @@ const Login = () => {
                 <p>Invalid Email Address</p>
             </div>
             }
-            {error && 
-            <div className="error-tosat">
-                <p>{error}</p>
+            {(error || success) && 
+            <div className={error ? "error-toast" : "success-toast"}>
+                <p>{error ? error : success}</p>
             </div>
             }
             {loading && 

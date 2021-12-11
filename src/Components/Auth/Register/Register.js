@@ -1,10 +1,13 @@
 import React from 'react'
+import StudentReg from './StudentReg'
+import TeacherReg from './TeacherReg'
 
 const Register = () => {
     return (
-        <div className="register-form">
-            
-        </div>
+        <>
+            <StudentReg />
+            {/* <TeacherReg /> */}
+        </>
     )
 }
 

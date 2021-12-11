@@ -1,0 +1,28 @@
+* {
+    box-sizing: border-box;
+}
+:root{
+    --text-font: Roboto,sans-serif;
+    --heading-font: Roboto,sans-serif;
+    --color1: #000;
+    --color2: #000;
+    --color3: #000;
+    --color4: #000;
+    --color5: #000;
+}
+.App{
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    color: #525666;
+    font-family: Roboto,sans-serif;
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 28px;
+}
+.container{
+    width: 1300px;
+    margin: 0 auto;
+    padding: 0;
+    height: auto;
+}
