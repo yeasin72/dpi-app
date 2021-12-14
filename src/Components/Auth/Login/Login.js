@@ -1,8 +1,13 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom'
 import validator from 'validator'
 import { userLogin } from '../../../Redux/Action/loginAction';
 import ReactLoading from 'react-loading';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import './Login.css';
 
 
 const Login = () => {
@@ -45,34 +50,50 @@ const Login = () => {
 
     return (
         <div className="login-form">
-            <p>hello</p>
-            <h2>this is</h2>
-            <div className="form">
-                <div className="form-item">
-                    <input type="email" name="email" onChange={(e) => emailHandler(e.target.value)} />
+            <div className="animated-svg" style={{backgroundImage: `url("./img/log-bg.svg")`}}>
+                <h2>svg</h2>
+            </div>
+            <div className="login-main">
+                {loading ? 
+                <div className="loading">
+                    <ReactLoading type={'cylon'} color={'#273c75'} />
                 </div>
-                <div className="form-item">
-                    <input type="password" name="password" onChange={(e) => passwordHandler(e.target.value)} />
+                :
+                <div className="form">
+                    <div className="form-heading">
+                        <h3>Log in</h3>
+                    </div>
+                    <div className="form-item">
+                        <input type="email" name="email" placeholder='Email' onChange={(e) => emailHandler(e.target.value)} />
+                    </div>
+                    <div className="form-item">
+                        <input type="password" placeholder='Password' name="password" onChange={(e) => passwordHandler(e.target.value)} />
+                    </div>
+                    <div className="form-item">
+                        <button onClick={loginRequest}>Login</button>
+                    </div>
+                    <div className="form-item">
+                        <p>New Here? <Link to="/register">Register</Link> </p>
+                        
+                    </div>
                 </div>
-                <div className="form-item">
-                    <button onClick={loginRequest}>Login</button>
+                }
+                {errmsg && 
+                <div className="error-tosat">
+                    <p><FontAwesomeIcon icon={faExclamationCircle} /> Invalid Email Address</p>
                 </div>
+                }
+                {(error || success) && 
+                <div className={error ? "error-tosat" : "success-toast"}>
+                    <p>{error ? <>
+                        <FontAwesomeIcon icon={faExclamationCircle} /> {error}
+                    </> : <>
+                        <FontAwesomeIcon icon={faCheck} /> {success}
+                    </>}</p>
+                </div>
+                }
+                
             </div>
-            {errmsg && 
-            <div className="error-tosat">
-                <p>Invalid Email Address</p>
-            </div>
-            }
-            {(error || success) && 
-            <div className={error ? "error-toast" : "success-toast"}>
-                <p>{error ? error : success}</p>
-            </div>
-            }
-            {loading && 
-            <div className="loading">
-                <ReactLoading type={'cylon'} color={'#273c75'} />
-            </div>
-            }
         </div>
     )
 }

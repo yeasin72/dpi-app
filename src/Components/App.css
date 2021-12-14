@@ -17,17 +17,17 @@
     --text-font: Quicksand-Regular,sans-serif;
     --heading-font: PlayfairDisplay-Bold,sans-serif;
     --small-heading-font: PlayfairDisplay-SemiBold,sans-serif;
-    --color1: #000;
-    --color2: #000;
-    --color3: #000;
-    --color4: #000;
-    --color5: #000;
+    --background: #FFF;
+    --section-background: #F1F2F6;
+    --text-color: #2F3542;
+    --button-color: #1E90FF;
+    --heading-color: #2f3640;
 }
 .App{
     margin: 0;
     padding: 0;
-    background: #fff;
-    color: #525666;
+    background: var(--background);
+    color: var(--text-color);
     font-family: var(--text-font);
     font-size: 17px;
     font-weight: 300;
@@ -39,10 +39,16 @@
     padding: 0;
     height: auto;
 }
+h1,h2,h3,h4,h5,h6{
+    margin: 0;
+}
 
 h2{
     font-family: var(--heading-font);
 }
 img{
     width: 100px;
+}
+a{
+    text-decoration: none;
 }
