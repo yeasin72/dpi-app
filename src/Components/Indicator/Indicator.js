@@ -5,14 +5,24 @@ import {
     Route,
 } from "react-router-dom"
 import Login from '../Auth/Login/Login'
+import Header from '../Header/Header'
 import Home from '../Home/Home'
 
 const Indicator = () => {
     return (
         <Router>
             <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/login" element={<Login />} />
+                <Route path="/" element={
+                <>
+                    <Header />
+                    <Home />
+                </>} />
+                <Route path="/login" 
+                element={
+                <>
+                    <Header />
+                    <Login />
+                </>} />
             </Routes>
         </Router>
     )

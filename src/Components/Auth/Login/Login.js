@@ -45,6 +45,8 @@ const Login = () => {
 
     return (
         <div className="login-form">
+            <p>hello</p>
+            <h2>this is</h2>
             <div className="form">
                 <div className="form-item">
                     <input type="email" name="email" onChange={(e) => emailHandler(e.target.value)} />

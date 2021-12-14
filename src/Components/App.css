@@ -1,9 +1,22 @@
 * {
     box-sizing: border-box;
 }
+@font-face {
+    font-family: Quicksand-Regular;
+    src: url(./../assets/fonts/Quicksand/Quicksand-Medium.ttf) format("truetype");
+}
+@font-face {
+    font-family: PlayfairDisplay-Bold;
+    src: url(./../assets/fonts/Playfair_Display/PlayfairDisplay-Bold.ttf) format("truetype");
+}
+@font-face {
+    font-family: PlayfairDisplay-SemiBold;
+    src: url(./../assets/fonts/Playfair_Display/PlayfairDisplay-SemiBold.ttf) format("truetype");
+}
 :root{
-    --text-font: Roboto,sans-serif;
-    --heading-font: Roboto,sans-serif;
+    --text-font: Quicksand-Regular,sans-serif;
+    --heading-font: PlayfairDisplay-Bold,sans-serif;
+    --small-heading-font: PlayfairDisplay-SemiBold,sans-serif;
     --color1: #000;
     --color2: #000;
     --color3: #000;
@@ -15,7 +28,7 @@
     padding: 0;
     background: #fff;
     color: #525666;
-    font-family: Roboto,sans-serif;
+    font-family: var(--text-font);
     font-size: 17px;
     font-weight: 300;
     line-height: 28px;
@@ -25,4 +38,11 @@
     margin: 0 auto;
     padding: 0;
     height: auto;
+}
+
+h2{
+    font-family: var(--heading-font);
+}
+img{
+    width: 100px;
 }
