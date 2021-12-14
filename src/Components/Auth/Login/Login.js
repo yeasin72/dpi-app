@@ -7,6 +7,8 @@ import ReactLoading from 'react-loading';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import { faEye } from '@fortawesome/free-regular-svg-icons'
+import { faEyeSlash } from '@fortawesome/free-regular-svg-icons'
 import './Login.css';
 
 
@@ -15,6 +17,7 @@ const Login = () => {
     const [errmsg, seterrmsg] = useState(false)
     const [email, setemail] = useState('')
     const [password, setpassword] = useState('')
+    const [togglepass, settogglepass] = useState(false)
 
     //  ==> Login data from server <==
     const userLoginstatus = useSelector(state => state.userLoginstatus)
@@ -26,6 +29,10 @@ const Login = () => {
         window.location.reload();
     }
 
+    // ==> show/hide pass <== 
+    function togglePassword() {
+        settogglepass(!togglepass)
+    }
 
     // ==> input data handle <==
     const emailHandler = (e) => setemail(e)
@@ -50,8 +57,8 @@ const Login = () => {
 
     return (
         <div className="login-form">
-            <div className="animated-svg" style={{backgroundImage: `url("./img/log-bg.svg")`}}>
-                <h2>svg</h2>
+            <div className="animated-svg">
+                <img src="./img/ourk.png" alt="svg" />
             </div>
             <div className="login-main">
                 {loading ? 
@@ -64,13 +71,19 @@ const Login = () => {
                         <h3>Log in</h3>
                     </div>
                     <div className="form-item">
-                        <input type="email" name="email" placeholder='Email' onChange={(e) => emailHandler(e.target.value)} />
+                        <input type="email" name="email" placeholder='E-mail' onChange={(e) => emailHandler(e.target.value)} />
+                    </div>
+                    <div className="form-item pass">
+                        <input type={togglepass?"text":"password"} placeholder='Password' name="password" onChange={(e) => passwordHandler(e.target.value)} />
+                        <button className='toggle-pass' onClick={togglePassword}>
+                            {togglepass?
+                                <FontAwesomeIcon icon={faEye}/>:
+                                <FontAwesomeIcon icon={faEyeSlash}/>
+                            }
+                        </button>
                     </div>
                     <div className="form-item">
-                        <input type="password" placeholder='Password' name="password" onChange={(e) => passwordHandler(e.target.value)} />
-                    </div>
-                    <div className="form-item">
-                        <button onClick={loginRequest}>Login</button>
+                        <button className='login-btn' onClick={loginRequest}>Login</button>
                     </div>
                     <div className="form-item">
                         <p>New Here? <Link to="/register">Register</Link> </p>

@@ -19,9 +19,11 @@
     --small-heading-font: PlayfairDisplay-SemiBold,sans-serif;
     --background: #FFF;
     --section-background: #F1F2F6;
+    --subsection-background: #dfe4ea;
     --text-color: #2F3542;
     --button-color: #1E90FF;
     --heading-color: #2f3640;
+    --fade-color : #a4b0be;
 }
 .App{
     margin: 0;
@@ -49,6 +51,6 @@ h2{
 img{
     width: 100px;
 }
-a{
+a {
     text-decoration: none;
 }
