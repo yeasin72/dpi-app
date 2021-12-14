@@ -34,7 +34,7 @@ const Header = () => {
                     <div className="logo-section">
                         <a className='logo-link' href="/">
                         <img src="./img/logo-ani.svg" alt="Dhaka Polytechnic Institute" />
-                        <h2 className="logo-text">DPI</h2>
+                        <h2 className="logo-text">Dhaka Polytechnic Institute</h2>
                         </a>
                     </div>
                     <div className="account">
