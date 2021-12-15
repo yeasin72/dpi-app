@@ -13,7 +13,7 @@ const Header = () => {
             <div className="container">
                 <div className="header-main">
                     <div className="hamburger">
-                        <div className="icon" onClick={burgirHandle}>
+                        <div className="icon" onClick={burgirHandle} title={burgir? 'Close menu' : 'Open Menu'}>
                             <span className={burgir ? 'burgir-slice burgir-top' : 'burgir-slice'}></span>
                             <span className={burgir ? 'burgir-slice burgir-middle' : 'burgir-slice'}></span>
                             <span className={burgir ? 'burgir-slice burgir-bottom' : 'burgir-slice'}></span>
@@ -32,9 +32,9 @@ const Header = () => {
                         }
                     </div>
                     <div className="logo-section">
-                        <a className='logo-link' href="/">
+                        <a className='logo-link' title='Dhaka Polytechnic Institute' href="/">
                         <img src="./img/logo-ani.svg" alt="Dhaka Polytechnic Institute" />
-                        <h2 className="logo-text">Dhaka Polytechnic Institute</h2>
+                        <h2 className={burgir?"logo-text color-white" : "logo-text" }>Dhaka Polytechnic Institute</h2>
                         </a>
                     </div>
                     <div className="account">

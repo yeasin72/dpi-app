@@ -16,6 +16,9 @@
     display: flex;
     flex-direction: row;
 }
+.color-white{
+    color: var(--background)!important;
+}
 /* hamburger */
 .hamburger{
     border-left: 1px solid #EEEEEE;
@@ -45,12 +48,14 @@
 .burgir-top{
     transform: rotate(45deg);
     margin-bottom: -12px;
+    background-color: tomato;
 }
 .burgir-middle{
     display: none;
 }
 .burgir-bottom{
     transform: rotate(-45deg);
+    background-color: tomato;
 }
 /* logo */
 .logo-section{
@@ -114,5 +119,52 @@
     to{
         top:0;
         opacity:1
+    }
+}
+
+/* tablet design */
+@media only screen and (max-width: 1024px) {
+    .hamburger{
+        width: 10%;
+    }
+    .logo-section{
+        width: 90%;
+        z-index: 1!important;
+    }
+    .logo-text{
+        padding-left: 0px;
+        font-size: 20px;
+        letter-spacing: 0.1px;
+    }
+    .logo-link img{
+        width: 70px;
+    }
+    .account{
+        display: none;
+    }
+    .hambargur-menu{
+        width: 60%;
+        left: 0;
+    }
+    
+}
+@media only screen and (max-width: 767px) {
+    .hamburger{
+        width: 13%;
+    }
+    .logo-section{
+        width: 87%;
+        z-index: 1!important;
+    }
+    .hambargur-menu{
+        width: 80%;
+        left: 0;
+        z-index: 10;
+    }
+    .hamburger .icon{
+        z-index: 11!important;
+    }
+    .color-white{
+        color: var(--heading-color)!important;
     }
 }

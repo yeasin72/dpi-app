@@ -41,7 +41,13 @@
     padding: 0;
     height: auto;
 }
-h1,h2,h3,h4,h5,h6{
+@media screen and (max-width:1024px) {
+    .container{
+        width: 100%;
+    }
+}
+
+h1,h2,h3,h4,h5,h6,p{
     margin: 0;
 }
 
@@ -53,4 +59,7 @@ img{
 }
 a {
     text-decoration: none;
+}
+p{
+    color: var(--text-color);
 }
