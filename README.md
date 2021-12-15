@@ -7,4 +7,14 @@ The project preview [Preview](https://dpi-fontend.herokuapp.com/).
 first you need to setup backend (we used strapi headless cms as backend)
 get the api url from backend and config api url inside from env variable
 
-![API URL](https://drive.google.com/file/d/1A9obtbNbMQP6aziCXhRs0OK0enKySLmE/view?usp=sharing)
+![API URL](https://github.com/yeasin72/dpi-app/tree/master/screenshot/api.png)
+
+```javascript Run this on terminal
+    npm install
+```
+
+make sure your backend is running
+
+```javascript after run this on terminal
+    npm start
+```
