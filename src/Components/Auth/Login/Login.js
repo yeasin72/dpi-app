@@ -56,10 +56,15 @@ const Login = () => {
     }
 
     return (
-        <div className="login-form">
-            <div className="animated-svg">
-                <img src="./img/ourk.png" alt="svg" />
+        <div className="login-form" style={{background: `url("./img/background.svg")`}}>
+            <div className="animated-svg" style={{background: `url("./img/mobile-bg.jpeg")`}}>
+                <div className="overlay">
+                    <div className="logo">
+                        <img src="./img/logo-ani.svg" alt="logo" />
+                    </div>
+                </div>
             </div>
+            <div className="container bring-top-for-mobile">
             <div className="login-main">
                 {loading ? 
                 <div className="loading">
@@ -69,6 +74,7 @@ const Login = () => {
                 <div className="form">
                     <div className="form-heading">
                         <h3>Log in</h3>
+                        <p>Log in with your credential</p>
                     </div>
                     <div className="form-item">
                         <input type="email" name="email" placeholder='E-mail' onChange={(e) => emailHandler(e.target.value)} />
@@ -83,7 +89,7 @@ const Login = () => {
                         </button>
                     </div>
                     <div className="form-item">
-                        <button className='login-btn' onClick={loginRequest}>Login</button>
+                        <button title='click to log in' className='login-btn' onClick={loginRequest}>Login</button>
                     </div>
                     <div className="form-item">
                         <p>New Here? <Link to="/register">Register</Link> </p>
@@ -93,7 +99,7 @@ const Login = () => {
                 }
                 {errmsg && 
                 <div className="error-tosat">
-                    <p><FontAwesomeIcon icon={faExclamationCircle} /> Invalid Email Address</p>
+                    <p><FontAwesomeIcon icon={faExclamationCircle} /> Invalid Email Address or password</p>
                 </div>
                 }
                 {(error || success) && 
@@ -106,6 +112,7 @@ const Login = () => {
                 </div>
                 }
                 
+            </div>
             </div>
         </div>
     )
