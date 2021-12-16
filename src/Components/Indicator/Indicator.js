@@ -5,6 +5,7 @@ import {
     Route,
 } from "react-router-dom"
 import Login from '../Auth/Login/Login'
+import Register from '../Auth/Register/Register'
 import Header from '../Header/Header'
 import Home from '../Home/Home'
 
@@ -22,6 +23,12 @@ const Indicator = () => {
                 <>
                     <Header />
                     <Login />
+                </>} />
+                <Route path="/register" 
+                element={
+                <>
+                    <Header />
+                    <Register />
                 </>} />
             </Routes>
         </Router>
