@@ -1,0 +1,44 @@
+.toggle-buttongroup{
+    width: 100%;
+    height: auto;
+}
+.t-button{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    background-color: #052A51;
+    border-radius: 30px;
+}
+.t-active-left{
+    width: 50%;
+    height: 40px;
+    background: var(--button-color);
+    position: absolute;
+    border-radius: 30px;
+    left: 0;
+    transition: 0.3s;
+}
+.t-active-right{
+    width: 50%;
+    height: 40px;
+    background: var(--button-color);
+    position: absolute;
+    border-radius: 30px;
+    right: 0;
+    transition: 0.3s;
+}
+.toggle-buttongroup .teacher,
+.toggle-buttongroup .student{
+    width: 50%;
+    height: 100%;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    color: var(--background);
+    cursor: pointer;
+}
