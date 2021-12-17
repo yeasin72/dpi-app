@@ -3,7 +3,7 @@
     height: auto;
 }
 .t-button{
-    width: 100%;
+    width: 250px;
     height: 40px;
     display: flex;
     flex-direction: row;
@@ -41,4 +41,221 @@
     z-index: 1;
     color: var(--background);
     cursor: pointer;
+}
+.r-form{
+    width: 600px;
+    height: auto;
+    padding: 40px;
+    background: transparent;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    box-sizing: border-box;
+}
+.registion-f{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.registation-form-main{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.r-form-item{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.r-form-item-multi{
+    width: 50%;
+    position: relative;
+}
+.r-form-item-multi-img{
+    width: 30%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 20px;
+}
+.r-form-item-multi-img-left{
+    width: 70%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.r-form-item-multi-img-left .file_upload{
+    width: 71%;
+}
+.technology{
+    width: 100%;
+}
+.r-form-item input{
+    width: 100%;
+    font-size: 16px;
+    padding: 10px 4px;
+    font-family: var(--text-font);
+    font-weight: 600;
+    color: var(--text-color);
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    background-color: var(--section-background);
+    transition: 0.3s ease-in;
+    padding-left: 1.2em;
+}
+.r-form-item input:focus{
+    outline: none;
+    padding-left: 0.8em;
+    background-color: var(--subsection-background);
+    
+}
+.r-form-item input::placeholder {
+    color: var(--fade-color);
+}
+.file-input__input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+.file_upload{
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+.file_upload_style{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 6px 0;
+    border-radius: 5px;
+    color: var(--background);
+    background-color: #565b66;
+}
+
+.pic-privew{
+    width: 150px;
+    height: 150px;
+    border: 1px dashed #e5e5e5;
+}
+.pic-privew img{
+    width: 100%;
+    height: 100%;
+}
+.technology{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.technology h5{
+    font-size: 18px;
+}
+.technology .devider{
+    width: 120px;
+    height: 2px;
+    background-color: var(--fade-color);
+    margin-top: -23px;
+}
+.radio-buttongroup{
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 20px;
+}
+.dipartment{
+    border-radius: 5px;
+    border: 2px solid #EEE;
+    position: relative;
+    width: 100%;
+    cursor: pointer;
+}
+.dipartment.active{
+    border: 2px solid var(--button-color);
+}
+.dipartment.active .content{
+    color: var(--button-color);
+}
+.dipartment .checked{
+    width: 20px;
+    height: 20px;
+    background-color: var(--button-color);
+    position: absolute;
+    left: -10px;
+    top: -7px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: var(--background);
+}
+.dipartment .content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.register-btn{
+    width: 200px;
+    border: 1px solid var(--button-color);
+    border-radius: 5px;
+    padding: 0.8em 1.5em;
+    font-family: var(--text-font);
+    background: var(--button-color);
+    color: var(--background);
+    font-weight: bold;
+    transition: 0.1s ease-in;
+    font-size: 16px;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+.register-btn:hover {
+    font-weight: bold;
+    background: #106ec9;
+    border-color: #106ec9;
+    color: var(--background);
+}
+.loading{
+    height: 633px!important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.toolpit{
+    position: absolute;
+    padding: 20px;
+    right: -210px;
+    top: 0;
+    border-radius: 5px;
+    background: #2F3542;
+    color: var(--background);
+    z-index: 1;
+}
+.toolpit ul{
+    margin: 0;
+    padding-inline-start:20px;
+    font-size: 14px;
 }

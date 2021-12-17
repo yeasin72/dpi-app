@@ -40,7 +40,7 @@ const Login = () => {
 
     // ==> Login Action <==
     const loginRequest = () => {
-        if (validator.isEmail(email)) {
+        if (validator.isEmail(email) && password.length > 5) {
             const formdata = {
                 "identifier": email,
                 "password": password

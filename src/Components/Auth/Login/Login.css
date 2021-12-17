@@ -37,7 +37,7 @@
 }
 .form-heading h3{
     font-family: var(--heading-font);
-    font-size: 40px;
+    font-size: 36px;
     margin: 10px 0;
 }
 .form-item{
@@ -75,6 +75,7 @@
     font-weight: bold;
     transition: 0.1s ease-in;
     font-size: 16px;
+    cursor: pointer;
 }
 .login-btn:hover {
     background: var(--button-color);
