@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 import validator from 'validator'
-import { userLogin } from '../../../Redux/Action/loginAction';
+import { userRegistation } from '../../../Redux/Action/registationaction';
 import ReactLoading from 'react-loading';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons'
@@ -32,15 +32,36 @@ const Register = () => {
     const [profileIMG, setprofileIMG] = useState('./img/profile.svg')
     const [customloading, setcustomloading] = useState(false)
     const [toolpit, settoolpit] = useState(false)
+    const [startLoading, setstartLoading] = useState(true);
+
+    setTimeout(() =>{
+        setstartLoading(false)
+    }, 200)
 
     // ==> Week password <==
     const weekPassword = ['password', 'pass123', 'password123', name, email ]
 
-    //  ==> Login data from server <==
+    //  ==> data from server <==
     const dipartMent = useSelector(state => state.dipartMent)
     const { loading, teacherTech, settingsData, error, studentTech } = dipartMent
+    // ==> registation successfull or not <==
+    const registation = useSelector(state => state.registation)
+    const { regiloading, regi, status, regierror, success } = registation
 
-    console.log(settingsData);
+    // make everything like default
+    if (regi && success && status === 200) {
+        setname('')
+        setrollNo('')
+        setregiNo('')
+        setemail('')
+        setpassword('')
+        setfile(null)
+        settechnology(null)
+        setdipartment('')
+        setprofileIMG('./img/profile.svg')
+    }
+
+
     //  ==> setup password validator <==
     const passvali = new passwordValidator()
     passvali.is().min(settingsData ? settingsData.minimum_password_length : 8)
@@ -52,27 +73,26 @@ const Register = () => {
         .has().not().spaces()
         .is().not().oneOf(weekPassword);
     
-    //  ==> Roll validator
+    //  ==> roll no validation
     const rollvali = new passwordValidator()
-        rollvali.is().min(settingsData ? settingsData.Student_roll_length : 6)
-        rollvali.is().max(settingsData ? settingsData.Student_roll_length : 6)
         rollvali.has().digits(settingsData ? settingsData.Student_roll_length : 6)
-
-    // ==> Registation validator
     const regivali = new passwordValidator()
-        regivali.is().min(settingsData ? settingsData.Registation_no_length : 6)
-        regivali.is().max(settingsData ? settingsData.Registation_no_length : 6)
         regivali.has().digits(settingsData ? settingsData.Registation_no_length : 6)
-
+    
     // ==> show/hide pass <== 
     function togglePassword() {
         settogglepass(!togglepass)
     }
-    console.log(file);
+    
+
 
     // ==> Login Action <==
     const RegisterRequest = () => {
-        if (validator.isEmail(email) && passvali.validate(password) && rollvali.validate(rollNo) && regivali.validate(regiNo) && name.length > 4) {
+        if (((techerORstudent === false) ? (regiNo.length === 6 && rollNo.length === 6) : true ) && validator.isEmail(email) && passvali.validate(password) && name.length > 3 &&  phoneNumber.length === 11 && technology !== null) {
+            // profile picture
+            const profilepic =  new FormData()
+            profilepic.append('files', file.file)
+            // other form data
             const formdata = {
                 "email": email,
                 "password": password,
@@ -85,35 +105,44 @@ const Register = () => {
                 "teacher": techerORstudent ? true : false,
                 "student_technology": techerORstudent === false ? technology : null,
                 "teacher_technology": techerORstudent ? technology : null,
+                "confirmed": false,
+                "blocked": true,
             }
-            dispatch(userLogin(formdata))
+            dispatch(userRegistation(formdata, profilepic))
         }// ==> if data not valid <==
         else{
-            if (validator.isEmail(email)) {
+            if (validator.isEmail(email) === false) {
                 seterrmsg({errstatus: true, msg: 'E-mail address not valid'})
                 setTimeout(() => {
                     seterrmsg({errstatus: false, msg: ''})
                 }, 6000);
             }
-            else if (passvali.validate(password)) {
+            else if (passvali.validate(password) === false) {
                 seterrmsg({errstatus: true, msg: 'Password not strong or valid'})
                 setTimeout(() => {
                     seterrmsg({errstatus: false, msg: ''})
                 }, 6000);
             } 
-            else if (rollvali.validate(rollNo)) {
-                seterrmsg({errstatus: true, msg: 'Roll number not valid'})
+            else if (((techerORstudent === false) ? (regiNo.length === 6 && rollNo.length === 6) : true ) === false) {
+                seterrmsg({errstatus: true, msg: 'Roll or registation number not valid'})
                 setTimeout(() => {
                     seterrmsg({errstatus: false, msg: ''})
                 }, 6000);
             }
-            else if (regivali.validate(regiNo)) {
-                seterrmsg({errstatus: true, msg: 'Registation number not valid'})
+            else if (name.length < 3 || phoneNumber.length !== 11) {
+                seterrmsg({errstatus: true, msg: 'Name or phone number not valid'})
                 setTimeout(() => {
                     seterrmsg({errstatus: false, msg: ''})
                 }, 6000);
-            }else{
-                seterrmsg({errstatus: true, msg: 'Please put valid information'})
+            }
+            else if (file === null) {
+                seterrmsg({errstatus: true, msg: 'Set profile Picture'})
+                setTimeout(() => {
+                    seterrmsg({errstatus: false, msg: ''})
+                }, 6000);
+            }
+            else{
+                seterrmsg({errstatus: true, msg: 'Set your Technology'})
                 setTimeout(() => {
                     seterrmsg({errstatus: false, msg: ''})
                 }, 6000);
@@ -130,19 +159,21 @@ const Register = () => {
             settecherORstudent(true)
             setTimeout(() => {
                 setcustomloading(false)
-            }, 1000);
+            }, 300);
         }else{
             setcustomloading(true)
             settecherORstudent(false)
             setTimeout(() => {
                 setcustomloading(false)
-            }, 1000);
+            }, 300);
         }
         
     }
 
     // ==> Profile Picture Handle <==
     function profilePicHandler(file){
+        file.target.files.length > 0  && setfile({file: file.target.files[0]})
+
         const reader = new FileReader();
         reader.onload = () =>{
             if(reader.readyState === 2){
@@ -150,7 +181,6 @@ const Register = () => {
             }
         }
         file.target.files.length === 1 && reader.readAsDataURL(file.target.files[0])
-        file.target.files.length === 1 && setfile(file.target.files[0])
     }
 
     // Technology Handle
@@ -175,7 +205,11 @@ const Register = () => {
             </div>
             <div className="container bring-top-for-mobile">
             <div className="login-main">
-                
+                {loading || regiloading || startLoading ?
+                    <div className="loading" style={{alignItems: `center`}}>
+                        <ReactLoading type={'cylon'} color={'#273c75'} />
+                    </div>
+                :
                 <div className="r-form">
                     {/* ==> student or teacher toggling <== */}
                     <div className='toggle-buttongroup'>
@@ -186,7 +220,7 @@ const Register = () => {
                         </div>
                     </div>
                     {/* ==> registation form <== */}
-                    {loading || customloading ? // ==> if login request is running <==
+                    {customloading ? // ==> if login request is running <==
                     <div className="loading">
                         <ReactLoading type={'cylon'} color={'#273c75'} />
                     </div>
@@ -231,16 +265,16 @@ const Register = () => {
                             {techerORstudent === false &&
                             <div className="r-form-item">
                                 <div className="r-form-item-multi">
-                                    <input type="text" placeholder='Board Roll' onClick={() => settoolpit(false)} />
+                                    <input type="text" onChange={(e) => setrollNo(e.target.value)} placeholder='Board Roll' onClick={() => settoolpit(false)} />
                                 </div>
                                 <div className="r-form-item-multi">
-                                <input onClick={() => settoolpit(false)} type="text" placeholder='Board Registation no' />
+                                <input onChange={(e) => setregiNo(e.target.value)} onClick={() => settoolpit(false)} type="text" placeholder='Board Registation no' />
                                 </div>
                             </div>
                             }
                             <div className="r-form-item">
                                 <div className="r-form-item-multi-img-left">
-                                    <input type="file" onClick={() => settoolpit(false)} onChange={(e) => profilePicHandler(e)} className='file-input__input' id='profilepic' />
+                                    <input type="file" onClick={() => settoolpit(false)} onChange={profilePicHandler} className='file-input__input' id='profilepic' />
                                     <label className='file_upload' htmlFor="profilepic">
                                         <div className='file_upload_style'>
                                             <FontAwesomeIcon icon={faUpload} /> Profile Picture</div>
@@ -300,18 +334,19 @@ const Register = () => {
                     </div>
                     }
                 </div>
+                }
                 {errmsg.errstatus && // ==> if got error from validation <==
                 <div className="error-tosat">
                     <p><FontAwesomeIcon icon={faExclamationCircle} /> {errmsg.msg}</p>
                 </div>
                 }
-                {(error ) && // ==> if got reply form server <== || success
+                {(error || (regi && status === 200 && success) || regierror) && // ==> if got reply form server <== || success
                 <div className={error ? "error-tosat" : "success-toast"}>
-                    <p>{error ? <>
-                        <FontAwesomeIcon icon={faExclamationCircle} /> {error}
-                    </> : <>
-                        <FontAwesomeIcon icon={faCheck} />
-                        {/* {success} */}
+                    <p>{(error || regierror) && <>
+                        <FontAwesomeIcon icon={faExclamationCircle} /> {regierror? regierror : error}
+                    </> }{ regi && status === 200 && success && <>
+                        <FontAwesomeIcon icon={faCheck} style={{marginRight: `12px`}} />
+                        {success}
                     </>}</p>
                 </div>
                 }
