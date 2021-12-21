@@ -9,9 +9,6 @@ export const getDipartment = () => async (dispatch) => {
         const student = await axios.get(`${api}/student-technologies`)
         const teacher = await axios.get(`${api}/teacher-technologies`)
         const settings = await axios.get(`${api}/website-settings`)
-        console.log("student", student);
-        console.log("teacher", teacher);
-        console.log("settings", settings);
         dispatch({
             type: BASICDATA_SUCCESS,
             payload: {
